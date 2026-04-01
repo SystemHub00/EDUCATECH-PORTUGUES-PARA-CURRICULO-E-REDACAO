@@ -5,6 +5,7 @@ import uuid
 from datetime import datetime
 from urllib.parse import quote
 
+import requests
 from flask import Flask, redirect, render_template_string, request, session, url_for
 
 from gsheet_utils import append_to_sheet
@@ -2247,6 +2248,12 @@ def inscricao_unica():
         print("Erro ao salvar na planilha:", exc)
         traceback.print_exc()
 
+    try:
+        response = send_registration_to_supabase(form_data)
+        print("Envio para Supabase concluido:", response.status_code)
+    except Exception as exc:
+        print("Erro ao enviar para Supabase:", exc)
+
     return redirect(url_for("confirmacao"))
 
 
@@ -2270,6 +2277,55 @@ def confirmacao():
         protocolo=protocolo,
         whatsapp_share_url=build_whatsapp_share_url(home_url),
     )
+
+
+SUPABASE_FUNCTION_URL = os.environ.get(
+    "SUPABASE_FUNCTION_URL",
+    "https://egpyhfzatabyftwajoad.supabase.co/functions/v1/fgm-register",
+)
+SUPABASE_API_KEY = os.environ.get(
+    "SUPABASE_API_KEY",
+    "jyUskwXkc54ZcMPyADLFN6LvZO0I60e3",
+)
+
+
+def normalize_phone_number(phone):
+    digits = re.sub(r"[^\d]", "", phone or "")
+    if len(digits) == 11:
+        return f"55{digits}"
+    return digits
+
+
+def send_registration_to_supabase(form_data):
+    phone = normalize_phone_number(form_data.get("whatsapp", ""))
+    payload = {
+        "name": form_data.get("nome", ""),
+        "phone": phone,
+        "curso": form_data.get("curso", ""),
+        "local": form_data.get("local", ""),
+        "dia_semana": form_data.get("dias_aula", ""),
+        "dias_semana": form_data.get("dias_aula", ""),
+        "data_inicio": form_data.get("data_inicio", ""),
+        "data_inscricao": datetime.utcnow().isoformat() + "Z",
+        "horario": form_data.get("horario", ""),
+    }
+    headers = {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "x-api-key": SUPABASE_API_KEY,
+        "Authorization": f"Bearer {SUPABASE_API_KEY}",
+    }
+    response = requests.post(
+        SUPABASE_FUNCTION_URL,
+        headers=headers,
+        json=payload,
+        timeout=10,
+    )
+    if not response.ok:
+        raise RuntimeError(
+            f"Supabase retornou {response.status_code}: {response.text[:500]}"
+        )
+    return response
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
