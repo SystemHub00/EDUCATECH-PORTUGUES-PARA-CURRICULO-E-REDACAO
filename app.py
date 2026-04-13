@@ -30,14 +30,14 @@ VALID_DDDS = {
 COURSE_OPTIONS = [
     {
         "id": "1",
-        "local": "SANTA CRUZ",
+        "local": "PÓLO DE SANTA CRUZ",
         "curso": "PORTUGUÊS PARA CURRÍCULO E REDAÇÃO",
         "turma": "TURMA PORTUGUÊS 01",
-        "dias_aula": "Quarta-feira, Sexta-feira, Sábado",
-        "horario": "18h até 22h | 08h até 13h",
+        "dias_aula": "Terça e Quinta",
+        "horario": "18h às 22h",
         "data_inicio": "15/04/2026",
-        "encerramento": "📌Quarta e Sexta: 18h até 22h | Sábado: 08h até 13h",
-        "endereco_curso": "📍Avenida João XXIII, 53, Rua 01, Quadra D, Casa 07",
+        "encerramento": "📌Terça e Quinta: 18h às 22h",
+        "endereco_curso": "📍Avenida João XXIII, 53, Rua 01, Quadra D, Casa 07 - Pólo de Santa Cruz",
     },
 ]
 
