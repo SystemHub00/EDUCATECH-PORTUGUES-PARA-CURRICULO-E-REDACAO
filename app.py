@@ -33,9 +33,9 @@ COURSE_OPTIONS = [
         "local": "PÓLO DE SANTA CRUZ",
         "curso": "PORTUGUÊS PARA CURRÍCULO E REDAÇÃO",
         "turma": "TURMA PORTUGUÊS 01",
-        "dias_aula": "Terça e quinta",
+        "dias_aula": "Terça e Quinta",
         "horario": "18 às 22 horas",
-        "data_inicio": "25/04/2026",
+        "data_inicio": "04/05/2026",
         "encerramento": "📌Terça e Quinta: 18h às 22h",
         "endereco_curso": "📍Avenida João XXIII, 53, Rua 01, Quadra D, Casa 07 - Pólo de Santa Cruz",
     },
@@ -47,7 +47,7 @@ COURSE_INFO = COURSE_OPTIONS[0]
 
 def build_whatsapp_share_url(home_url):
     message = (
-        "Acabei de me inscrever em uma oportunidade de qualificacao profissional. "
+        "Acabei de me inscrever em uma oportunidade de qualificação profissional. "
         "Confira aqui: "
         f"{home_url}"
     )
