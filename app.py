@@ -33,10 +33,10 @@ COURSE_OPTIONS = [
         "local": "PÓLO DE SANTA CRUZ",
         "curso": "PORTUGUÊS PARA CURRÍCULO E REDAÇÃO",
         "turma": "TURMA PORTUGUÊS 01",
-        "dias_aula": "Terça e Quinta",
+        "dias_aula": "Segunda e Quarta",
         "horario": "18 às 22 horas",
         "data_inicio": "04/05/2026",
-        "encerramento": "📌Terça e Quinta: 18h às 22h",
+        "encerramento": "📌Segunda e Quarta: 18h às 22h",
         "endereco_curso": "📍Avenida João XXIII, 53, Rua 01, Quadra D, Casa 07 - Pólo de Santa Cruz",
     },
 ]
@@ -924,7 +924,7 @@ TEMPLATE_WIZARD = r'''
                 <section class="wizard-panel" data-step="index">
                     <div class="hero-grid">
                         <div class="hero-card">
-                            <span class="hero-pill">PROJETO: EDUCATECH</span>
+                            <span class="hero-pill">PROJETO: QUALIFICATECH</span>
                                 <h1 class="hero-title">PORTUGUÊS PARA CURRÍCULO E REDAÇÃO</h1>
                             <p class="hero-subtitle">
                                 Capacitação Profissional com Ênfase em Novas Tecnologias para Ingresso e Permanência no Mercado de Trabalho!<br>
@@ -2270,7 +2270,7 @@ def confirmacao():
     if not protocolo:
         return redirect(url_for("home"))
 
-    home_url = "https://educatech-portugues-para-curriculo-e-redacao.onrender.com"
+    home_url = "https://qualificatech-portugues-para-curriculo-e-redacao.onrender.com"
 
     return render_template_string(
         TEMPLATE_CONFIRMACAO,
