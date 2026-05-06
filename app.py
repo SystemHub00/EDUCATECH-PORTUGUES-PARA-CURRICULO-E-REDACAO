@@ -2270,7 +2270,7 @@ def confirmacao():
     if not protocolo:
         return redirect(url_for("home"))
 
-    home_url = "https://qualificatech-portugues-para-curriculo-e-redacao.onrender.com"
+    home_url = "https://educatech-portugues-para-curriculo-e-redacao.onrender.com"
 
     return render_template_string(
         TEMPLATE_CONFIRMACAO,
